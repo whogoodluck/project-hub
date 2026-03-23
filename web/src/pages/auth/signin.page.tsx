@@ -44,9 +44,9 @@ export default function SigninPage() {
   })
 
   return (
-    <div className="relative flex min-h-screen overflow-hidden bg-background">
+    <div className='relative flex min-h-screen overflow-hidden bg-background'>
       <div
-        className="absolute inset-0 opacity-[0.4] dark:opacity-[0.03]"
+        className='absolute inset-0 opacity-[0.4] dark:opacity-[0.03]'
         style={{
           backgroundImage:
             'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
@@ -56,85 +56,94 @@ export default function SigninPage() {
       />
 
       {/* Left panel */}
-      <div className="relative hidden w-1/2 flex-col justify-between p-12 lg:flex">
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-            <Layers className="h-4 w-4 text-primary-foreground" />
+      <div className='relative hidden w-1/2 flex-col justify-between p-12 lg:flex'>
+        <div className='flex items-center gap-3'>
+          <div className='flex h-8 w-8 items-center justify-center rounded-lg bg-primary'>
+            <Layers className='h-4 w-4 text-primary-foreground' />
           </div>
-          <span className="font-mono text-sm font-bold tracking-widest text-muted-foreground uppercase">
+          <span className='font-mono text-sm font-bold tracking-widest text-muted-foreground uppercase'>
             Project Hub
           </span>
         </div>
 
         <div>
-          <div className="mb-6 inline-block rounded-full border border-border bg-muted px-3 py-1">
-            <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
+          <div className='mb-6 inline-block rounded-full border border-border bg-muted px-3 py-1'>
+            <span className='font-mono text-xs tracking-wider text-muted-foreground uppercase'>
               Agency OS · v2.0
             </span>
           </div>
-          <h1 className="mb-4 font-mono text-5xl font-bold leading-none tracking-tight text-foreground">
+          <h1 className='mb-4 font-mono text-5xl font-bold leading-none tracking-tight text-foreground'>
             Every project.
             <br />
-            <span className="text-muted-foreground/40">Every deadline.</span>
+            <span className='text-muted-foreground/40'>Every deadline.</span>
             <br />
             One place.
           </h1>
-          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+          <p className='max-w-xs text-sm leading-relaxed text-muted-foreground'>
             Real-time collaboration, role-based access, and live activity feeds
             — built for teams that ship.
           </p>
         </div>
 
-        <div className="flex gap-8">
+        <div className='flex gap-8'>
           {[
             { label: 'Active Projects', value: '240+' },
             { label: 'Team Members', value: '1.2k' },
             { label: 'Tasks Shipped', value: '18k' },
           ].map((stat) => (
             <div key={stat.label}>
-              <div className="font-mono text-2xl font-bold text-foreground">{stat.value}</div>
-              <div className="text-xs text-muted-foreground">{stat.label}</div>
+              <div className='font-mono text-2xl font-bold text-foreground'>
+                {stat.value}
+              </div>
+              <div className='text-xs text-muted-foreground'>{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Divider */}
-      <div className="hidden w-px bg-border lg:block" />
+      <div className='hidden w-px bg-border lg:block' />
 
       {/* Right panel */}
-      <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-12">
-        <div className="mb-10 flex items-center gap-2 lg:hidden">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
-            <Layers className="h-4 w-4 text-primary-foreground" />
+      <div className='relative flex flex-1 flex-col items-center justify-center px-6 py-12'>
+        <div className='mb-10 flex items-center gap-2 lg:hidden'>
+          <div className='flex h-7 w-7 items-center justify-center rounded-md bg-primary'>
+            <Layers className='h-4 w-4 text-primary-foreground' />
           </div>
-          <span className="font-mono text-sm font-medium text-muted-foreground">Project Hub</span>
+          <span className='font-mono text-sm font-medium text-muted-foreground'>
+            Project Hub
+          </span>
         </div>
 
-        <div className="w-full max-w-sm">
-          <div className="mb-8">
-            <h2 className="mb-1 font-mono text-2xl font-bold text-foreground">
+        <div className='w-full max-w-sm'>
+          <div className='mb-8'>
+            <h2 className='mb-1 font-mono text-2xl font-bold text-foreground'>
               Welcome back
             </h2>
-            <p className="text-sm text-muted-foreground">Sign in to your workspace</p>
+            <p className='text-sm text-muted-foreground'>
+              Sign in to your workspace
+            </p>
           </div>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit((v) => mutate(v))} className="space-y-4">
+            <form
+              onSubmit={form.handleSubmit((v) => mutate(v))}
+              className='space-y-4'
+            >
               <FormField
                 control={form.control}
-                name="email"
+                name='email'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-mono text-xs font-medium tracking-wider text-muted-foreground uppercase">
+                    <FormLabel className='font-mono text-xs font-medium tracking-wider text-muted-foreground uppercase'>
                       Email
                     </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        type="email"
-                        placeholder="you@company.com"
-                        autoComplete="email"
+                        type='email'
+                        placeholder='you@company.com'
+                        autoComplete='email'
                       />
                     </FormControl>
                     <FormMessage />
@@ -144,36 +153,40 @@ export default function SigninPage() {
 
               <FormField
                 control={form.control}
-                name="password"
+                name='password'
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex items-center justify-between">
-                      <FormLabel className="font-mono text-xs font-medium tracking-wider text-muted-foreground uppercase">
+                    <div className='flex items-center justify-between'>
+                      <FormLabel className='font-mono text-xs font-medium tracking-wider text-muted-foreground uppercase'>
                         Password
                       </FormLabel>
                       <Link
-                        to="/forgot-password"
-                        className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                        to='/forgot-password'
+                        className='text-xs text-muted-foreground transition-colors hover:text-foreground'
                       >
                         Forgot?
                       </Link>
                     </div>
                     <FormControl>
-                      <div className="relative">
+                      <div className='relative'>
                         <Input
                           {...field}
                           type={showPassword ? 'text' : 'password'}
-                          placeholder="••••••••"
-                          autoComplete="current-password"
-                          className="pr-10"
+                          placeholder='••••••••'
+                          autoComplete='current-password'
+                          className='pr-10'
                         />
                         <button
-                          type="button"
+                          type='button'
                           onClick={() => setShowPassword((v) => !v)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+                          className='absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground'
                           tabIndex={-1}
                         >
-                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          {showPassword ? (
+                            <EyeOff className='h-4 w-4' />
+                          ) : (
+                            <Eye className='h-4 w-4' />
+                          )}
                         </button>
                       </div>
                     </FormControl>
@@ -183,13 +196,13 @@ export default function SigninPage() {
               />
 
               <Button
-                type="submit"
+                type='submit'
                 disabled={isPending}
-                className="mt-2 w-full font-mono text-sm font-bold tracking-wider uppercase"
+                className='mt-2 w-full font-mono text-sm font-bold tracking-wider uppercase'
               >
                 {isPending ? (
-                  <span className="flex items-center gap-2">
-                    <span className="h-3 w-3 animate-spin rounded-full border border-primary-foreground/30 border-t-primary-foreground" />
+                  <span className='flex items-center gap-2'>
+                    <span className='h-3 w-3 animate-spin rounded-full border border-primary-foreground/30 border-t-primary-foreground' />
                     Signing in...
                   </span>
                 ) : (
@@ -199,9 +212,12 @@ export default function SigninPage() {
             </form>
           </Form>
 
-          <p className="mt-6 text-center text-sm text-muted-foreground">
+          <p className='mt-6 text-center text-sm text-muted-foreground'>
             No account?{' '}
-            <Link to="/signup" className="font-medium text-foreground transition-colors hover:text-foreground/80">
+            <Link
+              to='/signup'
+              className='font-medium text-foreground transition-colors hover:text-foreground/80'
+            >
               Create one
             </Link>
           </p>

@@ -6,7 +6,12 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
-const SKIP_REFRESH = ['/auth/refresh', '/auth/me', '/auth/signin', '/auth/signup']
+const SKIP_REFRESH = [
+  '/auth/refresh',
+  '/auth/me',
+  '/auth/signin',
+  '/auth/signup',
+]
 
 let isRefreshing = false
 let queue: Array<(ok: boolean) => void> = []
@@ -16,7 +21,9 @@ api.interceptors.response.use(
   async (error) => {
     const original = error.config
 
-    const shouldSkip = SKIP_REFRESH.some((path) => original?.url?.includes(path))
+    const shouldSkip = SKIP_REFRESH.some((path) =>
+      original?.url?.includes(path)
+    )
 
     if (error.response?.status !== 401 || original?._retry || shouldSkip) {
       return Promise.reject(error)
@@ -43,7 +50,7 @@ api.interceptors.response.use(
     } finally {
       isRefreshing = false
     }
-  },
+  }
 )
 
 export default api

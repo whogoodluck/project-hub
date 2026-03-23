@@ -3,6 +3,7 @@ import { ZodError } from 'zod'
 import { NODE_ENV } from '../utils/env'
 import { AppError } from './AppError'
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export function errorHandler(err: unknown, _req: Request, res: Response, _next: NextFunction) {
   if (err instanceof ZodError) {
     res.status(422).json({

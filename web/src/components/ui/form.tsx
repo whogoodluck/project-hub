@@ -2,23 +2,10 @@ import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import { Slot } from '@radix-ui/react-slot'
-import {
-  createContext,
-  forwardRef,
-  useContext,
-  useId,
-} from 'react'
 import type { HTMLAttributes } from 'react'
-import {
-  Controller,
-  FormProvider,
-  useFormContext,
-} from 'react-hook-form'
-import type {
-  ControllerProps,
-  FieldPath,
-  FieldValues,
-} from 'react-hook-form'
+import { createContext, forwardRef, useContext, useId } from 'react'
+import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
+import { Controller, FormProvider, useFormContext } from 'react-hook-form'
 import { Label } from './label'
 
 export { zodResolver }
@@ -33,7 +20,7 @@ interface FormFieldContextValue<
 }
 
 const FormFieldContext = createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue,
+  {} as FormFieldContextValue
 )
 
 function FormField<
@@ -74,7 +61,7 @@ interface FormItemContextValue {
 }
 
 const FormItemContext = createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
+  {} as FormItemContextValue
 )
 
 const FormItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
@@ -85,7 +72,7 @@ const FormItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
         <div ref={ref} className={cn('space-y-2', className)} {...props} />
       </FormItemContext.Provider>
     )
-  },
+  }
 )
 FormItem.displayName = 'FormItem'
 

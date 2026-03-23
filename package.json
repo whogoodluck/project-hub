@@ -4,8 +4,8 @@
   "description": "A Real-Time Client Project Dashboard with Role-Based Access &amp; Live Activity Feed",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "tsx --watch src/index.ts",
+    "start": "NODE_ENV=production tsx dist/index.js",
+    "dev": "NODE_ENV=development tsx --watch src/index.ts",
     "build": "tsc",
     "build:frontend": "cd ./web && npm install && npm run build",
     "build:backend": "npm run build",
@@ -49,6 +49,7 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
+    "@types/node": "^25.5.0",
     "@types/pg": "^8.20.0",
     "eslint": "^10.1.0",
     "globals": "^17.4.0",

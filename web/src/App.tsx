@@ -1,8 +1,8 @@
-import { PublicRoute, ProtectedRoute } from '@/components/route-guards'
+import { ProtectedRoute, PublicRoute } from '@/components/route-guards'
 import { AuthProvider } from '@/contexts/auth.context'
-import DashboardPage from '@/pages/dashboard.page'
 import SigninPage from '@/pages/auth/signin.page'
 import SignupPage from '@/pages/auth/signup.page'
+import DashboardPage from '@/pages/dashboard.page'
 import HomePage from '@/pages/home.page'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -20,21 +20,21 @@ export default function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path='/' element={<HomePage />} />
 
             <Route element={<PublicRoute />}>
-              <Route path="/signin" element={<SigninPage />} />
-              <Route path="/signup" element={<SignupPage />} />
+              <Route path='/signin' element={<SigninPage />} />
+              <Route path='/signup' element={<SignupPage />} />
             </Route>
 
             <Route element={<ProtectedRoute />}>
-              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path='/dashboard' element={<DashboardPage />} />
             </Route>
           </Routes>
 
           <Toaster
-            position="top-right"
-            theme="dark"
+            position='top-right'
+            theme='dark'
             toastOptions={{
               style: {
                 background: '#18181b',

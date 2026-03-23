@@ -1,8 +1,8 @@
-import { getMeApi, signoutApi } from '@/api/auth.api'
 import type { User } from '@/api/auth.api'
+import { getMeApi, signoutApi } from '@/api/auth.api'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { createContext, useCallback, useContext } from 'react'
 import type { ReactNode } from 'react'
+import { createContext, useCallback, useContext } from 'react'
 
 interface AuthCtx {
   user: User | null
