@@ -8,6 +8,7 @@ import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 import { Controller, FormProvider, useFormContext } from 'react-hook-form'
 import { Label } from './label'
 
+/* eslint-disable react-refresh/only-export-components */
 export { zodResolver }
 
 const Form = FormProvider
@@ -147,6 +148,7 @@ const FormMessage = forwardRef<
 })
 FormMessage.displayName = 'FormMessage'
 
+/* eslint-disable react-refresh/only-export-components */
 export {
   Form,
   FormControl,

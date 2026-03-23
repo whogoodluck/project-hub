@@ -40,7 +40,13 @@ export async function signin(data: SigninInput) {
     throw new AppError(403, 'Account is deactivated', 'ACCOUNT_INACTIVE')
   }
 
-  const payload: JwtPayload = { sub: user.id, email: user.email, role: user.role }
+  const payload: JwtPayload = {
+    id: user.id,
+    sub: user.id,
+    email: user.email,
+    name: user.name,
+    role: user.role,
+  }
 
   const accessToken = signAccessToken(payload)
   const rawRefresh = signRefreshToken(payload)
@@ -86,7 +92,13 @@ export async function refreshTokens(rawToken: string) {
     throw new AppError(401, 'User not found or inactive', 'UNAUTHORIZED')
   }
 
-  const newPayload: JwtPayload = { sub: user.id, email: user.email, role: user.role }
+  const newPayload: JwtPayload = {
+    id: user.id,
+    sub: user.id,
+    email: user.email,
+    name: user.name,
+    role: user.role,
+  }
   const newAccess = signAccessToken(newPayload)
   const newRawRefresh = signRefreshToken(newPayload)
   const newHashed = await hashToken(newRawRefresh)

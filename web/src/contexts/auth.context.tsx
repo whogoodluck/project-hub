@@ -43,6 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   )
 }
 
+/* eslint-disable react-refresh/only-export-components */
 export function useAuth() {
   const ctx = useContext(AuthContext)
   if (!ctx) throw new Error('useAuth must be used inside AuthProvider')

@@ -18,24 +18,6 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
-const ROLES = [
-  {
-    role: 'Admin',
-    desc: 'Full access — manage clients, projects, and all users',
-    color: 'bg-amber-500',
-  },
-  {
-    role: 'Project Manager',
-    desc: 'Create & manage projects, assign tasks to developers',
-    color: 'bg-sky-500',
-  },
-  {
-    role: 'Developer',
-    desc: 'View assigned tasks, update status, track progress',
-    color: 'bg-emerald-500',
-  },
-]
-
 export default function SignupPage() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
@@ -61,6 +43,7 @@ export default function SignupPage() {
   })
 
   function onSubmit(values: SignupFormValues) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { confirmPassword: _, ...payload } = values
     mutate(payload)
   }
@@ -89,34 +72,38 @@ export default function SignupPage() {
         </div>
 
         <div>
-          <p className='mb-3 font-mono text-xs tracking-widest text-muted-foreground uppercase'>
-            Role-based access
-          </p>
-          <div className='space-y-3'>
-            {ROLES.map((item) => (
-              <div
-                key={item.role}
-                className='flex items-start gap-3 rounded-lg border border-border bg-card p-4'
-              >
-                <div
-                  className={`mt-1 h-2 w-2 shrink-0 rounded-full ${item.color}`}
-                />
-                <div>
-                  <div className='mb-0.5 font-mono text-sm font-bold text-card-foreground'>
-                    {item.role}
-                  </div>
-                  <div className='text-xs leading-relaxed text-muted-foreground'>
-                    {item.desc}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className='mb-6 inline-block rounded-full border border-border bg-muted px-3 py-1'>
+            <span className='font-mono text-xs tracking-wider text-muted-foreground uppercase'>
+              Agency OS · v2.0
+            </span>
           </div>
+          <h1 className='mb-4 font-mono text-5xl font-bold leading-none tracking-tight text-foreground'>
+            Every project.
+            <br />
+            <span className='text-muted-foreground/40'>Every deadline.</span>
+            <br />
+            One place.
+          </h1>
+          <p className='max-w-xs text-sm leading-relaxed text-muted-foreground'>
+            Real-time collaboration, role-based access, and live activity feeds
+            — built for teams that ship.
+          </p>
         </div>
 
-        <p className='text-xs text-muted-foreground'>
-          Your role is assigned by an Admin after account creation.
-        </p>
+        <div className='flex gap-8'>
+          {[
+            { label: 'Active Projects', value: '240+' },
+            { label: 'Team Members', value: '1.2k' },
+            { label: 'Tasks Shipped', value: '18k' },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <div className='font-mono text-2xl font-bold text-foreground'>
+                {stat.value}
+              </div>
+              <div className='text-xs text-muted-foreground'>{stat.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className='hidden w-px bg-border lg:block' />
