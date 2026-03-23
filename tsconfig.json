@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "target": "esnext",
+    "module": "esnext",
+    "target": "es2023",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
     "types": [],
     "outDir": "dist",
     "sourceMap": true,
