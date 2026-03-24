@@ -106,7 +106,9 @@ export function TaskForm({
               <Label className='text-xs'>Priority</Label>
               <Select
                 value={form.priority}
-                onValueChange={(v) => setForm((f) => ({ ...f, priority: v as TaskPriority }))}
+                onValueChange={(v) =>
+                  setForm((f) => ({ ...f, priority: v as TaskPriority }))
+                }
               >
                 <SelectTrigger className='mt-1'>
                   <SelectValue />

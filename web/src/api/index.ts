@@ -10,7 +10,6 @@ import type {
   User,
 } from '@/types'
 
-// --- Clients ---
 export const clientsApi = {
   list: () =>
     api
@@ -44,7 +43,6 @@ export const clientsApi = {
   remove: (id: string) => api.delete(`/clients/${id}`),
 }
 
-// --- Projects ---
 export const projectsApi = {
   list: () =>
     api
@@ -68,7 +66,6 @@ export const projectsApi = {
   remove: (id: string) => api.delete(`/projects/${id}`),
 }
 
-// --- Tasks ---
 export type TaskFilters = {
   status?: string
   priority?: string
@@ -137,7 +134,6 @@ export const tasksApi = {
     api.delete(`/projects/${projectId}/tasks/${taskId}`),
 }
 
-// --- Users ---
 export const usersApi = {
   list: () =>
     api.get<{ success: true; data: User[] }>('/users').then((r) => r.data.data),
@@ -158,7 +154,6 @@ export const usersApi = {
       .then((r) => r.data.data),
 }
 
-// --- Notifications ---
 export const notificationsApi = {
   list: () =>
     api
@@ -175,7 +170,6 @@ export const notificationsApi = {
   markAll: () => api.patch('/notifications/read-all'),
 }
 
-// --- Dashboard ---
 export const dashboardApi = {
   get: () =>
     api
@@ -186,12 +180,12 @@ export const dashboardApi = {
       .then((r) => r.data.data),
 }
 
-// --- Activity ---
 export const activityApi = {
   feed: (projectId?: string) =>
     api
       .get<{
         success: true
+        /* eslint-disable @typescript-eslint/no-explicit-any */
         data: any[]
       }>('/activity/feed', { params: projectId ? { projectId } : {} })
       .then((r) => r.data.data),

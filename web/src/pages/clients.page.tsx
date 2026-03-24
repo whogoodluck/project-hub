@@ -145,6 +145,7 @@ export default function ClientsPage() {
       setDeleteId(null)
       toast.success('Client deleted')
     },
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     onError: (e: any) =>
       toast.error(e?.response?.data?.message ?? 'Cannot delete'),
   })

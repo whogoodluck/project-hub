@@ -99,7 +99,9 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           Project Hub
         </span>
         {onClose && (
-          <Button variant='ghost' size='icon'
+          <Button
+            variant='ghost'
+            size='icon'
             onClick={onClose}
             className='ml-auto text-muted-foreground hover:text-foreground'
           >

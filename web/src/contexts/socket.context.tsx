@@ -2,7 +2,14 @@ import { useAuth } from '@/contexts/auth.context'
 import type { ActivityLog } from '@/types'
 import { useQueryClient } from '@tanstack/react-query'
 import type { ReactNode } from 'react'
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { io, type Socket } from 'socket.io-client'
 
 interface SocketCtx {
@@ -27,7 +34,7 @@ export function SocketProvider({ children }: { children: ReactNode }) {
 
     const token = document.cookie
       .split(';')
-      .find(c => c.trim().startsWith('access_token='))
+      .find((c) => c.trim().startsWith('access_token='))
       ?.split('=')[1]
 
     const socket = io('/', {
@@ -43,7 +50,7 @@ export function SocketProvider({ children }: { children: ReactNode }) {
     })
 
     socket.on('activity:new', ({ log }: { log: ActivityLog }) => {
-      setRecentActivity(prev => [log, ...prev].slice(0, 50))
+      setRecentActivity((prev) => [log, ...prev].slice(0, 50))
       qc.invalidateQueries({ queryKey: ['activity'] })
     })
 
@@ -80,13 +87,15 @@ export function SocketProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <SocketContext.Provider value={{
-      socket: socketRef.current,
-      onlineCount,
-      joinProject,
-      leaveProject,
-      recentActivity,
-    }}>
+    <SocketContext.Provider
+      value={{
+        socket: socketRef.current,
+        onlineCount,
+        joinProject,
+        leaveProject,
+        recentActivity,
+      }}
+    >
       {children}
     </SocketContext.Provider>
   )

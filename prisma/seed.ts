@@ -29,6 +29,7 @@ async function main() {
 
   await prisma.$executeRaw`TRUNCATE TABLE presence_sessions, notifications, activity_logs, tasks, projects, clients, refresh_tokens, users RESTART IDENTITY CASCADE`
 
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const [admin, pm1, pm2, dev1, dev2, dev3, dev4] = await Promise.all([
     prisma.user.create({
       data: {
