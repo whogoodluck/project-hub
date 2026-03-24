@@ -55,7 +55,6 @@ export default function SigninPage() {
         }}
       />
 
-      {/* Left panel */}
       <div className='relative hidden w-1/2 flex-col justify-between p-12 lg:flex'>
         <div className='flex items-center gap-3'>
           <div className='flex h-8 w-8 items-center justify-center rounded-lg bg-primary'>
@@ -101,10 +100,8 @@ export default function SigninPage() {
         </div>
       </div>
 
-      {/* Divider */}
       <div className='hidden w-px bg-border lg:block' />
 
-      {/* Right panel */}
       <div className='relative flex flex-1 flex-col items-center justify-center px-6 py-12'>
         <div className='mb-10 flex items-center gap-2 lg:hidden'>
           <div className='flex h-7 w-7 items-center justify-center rounded-md bg-primary'>

@@ -35,15 +35,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [qc])
 
   return (
-    <AuthContext.Provider
-      value={{ user, isLoading, isAuthenticated: !!user, signout, invalidate }}
-    >
+    <AuthContext.Provider value={{ user, isLoading, isAuthenticated: !!user, signout, invalidate }}>
       {children}
     </AuthContext.Provider>
   )
 }
 
-/* eslint-disable react-refresh/only-export-components */
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const ctx = useContext(AuthContext)
   if (!ctx) throw new Error('useAuth must be used inside AuthProvider')
