@@ -52,24 +52,21 @@ export default function HomePage() {
           {isAuthenticated ? (
             <Button
               asChild
-              size='sm'
               className='font-mono text-xs tracking-widest uppercase'
             >
-              <Link to='/dashboard'>Dashboard →</Link>
+              <Link to='/dashboard'>Dashboard</Link>
             </Button>
           ) : (
             <>
               <Button
                 asChild
                 variant='ghost'
-                size='sm'
                 className='font-mono text-xs uppercase'
               >
                 <Link to='/signin'>Sign In</Link>
               </Button>
               <Button
                 asChild
-                size='sm'
                 className='font-mono text-xs tracking-widest uppercase'
               >
                 <Link to='/signup'>Get Started</Link>
@@ -104,7 +101,7 @@ export default function HomePage() {
             size='lg'
             className='px-8 font-mono font-bold tracking-widest uppercase'
           >
-            <Link to='/signup'>Start free →</Link>
+            <Link to='/signup'>Start free</Link>
           </Button>
           <Button
             asChild
