@@ -22,7 +22,7 @@ export function registerSocketHandlers(io: SocketIoServer) {
       const payload = verifyAccessToken(token)
       ;(socket as AuthSocket).userId = payload.sub
       ;(socket as AuthSocket).userRole = payload.role
-      ;(socket as AuthSocket).userName = payload.email
+      ;(socket as AuthSocket).userName = payload.name
       next()
     } catch {
       next(new Error('UNAUTHORIZED'))

@@ -253,7 +253,7 @@ export default function SignupPage() {
                     Creating account...
                   </span>
                 ) : (
-                  'Create Account →'
+                  'Create Account'
                 )}
               </Button>
             </form>

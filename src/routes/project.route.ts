@@ -7,12 +7,23 @@ import { createProjectSchema, updateProjectSchema } from '../validators/project.
 
 const router = Router()
 
-router.use(authenticate, authorize('ADMIN', 'PROJECT_MANAGER'))
+router.use(authenticate)
 
 router.get('/', projectController.list)
 router.get('/:id', projectController.get)
-router.post('/', validate(createProjectSchema), projectController.create)
-router.patch('/:id', validate(updateProjectSchema), projectController.update)
-router.delete('/:id', projectController.remove)
+
+router.post(
+  '/',
+  authorize('ADMIN', 'PROJECT_MANAGER'),
+  validate(createProjectSchema),
+  projectController.create
+)
+router.patch(
+  '/:id',
+  authorize('ADMIN', 'PROJECT_MANAGER'),
+  validate(updateProjectSchema),
+  projectController.update
+)
+router.delete('/:id', authorize('ADMIN', 'PROJECT_MANAGER'), projectController.remove)
 
 export default router

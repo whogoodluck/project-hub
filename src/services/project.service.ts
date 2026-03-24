@@ -10,6 +10,13 @@ const PROJECT_INCLUDE = {
 }
 
 export async function getProjects(userId: string, role: Role) {
+  if (role === Role.DEVELOPER) {
+    return prisma.project.findMany({
+      where: { tasks: { some: { assigneeId: userId } } },
+      include: PROJECT_INCLUDE,
+      orderBy: { createdAt: 'desc' },
+    })
+  }
   const where = role === Role.ADMIN ? {} : { managerId: userId }
   return prisma.project.findMany({
     where,
@@ -19,13 +26,14 @@ export async function getProjects(userId: string, role: Role) {
 }
 
 export async function getProject(id: string, userId: string, role: Role) {
-  const project = await prisma.project.findUnique({
-    where: { id },
-    include: PROJECT_INCLUDE,
-  })
+  const project = await prisma.project.findUnique({ where: { id }, include: PROJECT_INCLUDE })
   if (!project) throw new AppError(404, 'Project not found', 'NOT_FOUND')
   if (role === Role.PROJECT_MANAGER && project.managerId !== userId) {
     throw new AppError(403, 'Access denied', 'FORBIDDEN')
+  }
+  if (role === Role.DEVELOPER) {
+    const hasTask = await prisma.task.count({ where: { projectId: id, assigneeId: userId } })
+    if (!hasTask) throw new AppError(403, 'Access denied', 'FORBIDDEN')
   }
   return project
 }

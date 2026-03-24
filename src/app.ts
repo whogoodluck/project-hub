@@ -5,9 +5,11 @@ import express from 'express'
 import morgan from 'morgan'
 import path from 'path'
 
-import { errorHandler } from './errors/errorHandler'
 import router from './routes'
 import { FRONTEND_URL } from './utils/env'
+
+import { errorHandler } from './errors/errorHandler'
+import { notFoundHandler } from './errors/notFoundHandler'
 
 const app = express()
 
@@ -45,5 +47,6 @@ app.get(/^(?!\/api).*/, (_req: Request, res: Response) => {
 })
 
 app.use(errorHandler)
+app.use('/api', notFoundHandler)
 
 export default app

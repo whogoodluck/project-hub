@@ -7,12 +7,23 @@ import { createClientSchema, updateClientSchema } from '../validators/client.val
 
 const router = Router()
 
-router.use(authenticate, authorize('ADMIN', 'PROJECT_MANAGER'))
+router.use(authenticate)
 
 router.get('/', clientController.list)
 router.get('/:id', clientController.get)
-router.post('/', validate(createClientSchema), clientController.create)
-router.patch('/:id', validate(updateClientSchema), clientController.update)
-router.delete('/:id', clientController.remove)
+
+router.post(
+  '/',
+  authorize('ADMIN', 'PROJECT_MANAGER'),
+  validate(createClientSchema),
+  clientController.create
+)
+router.patch(
+  '/:id',
+  authorize('ADMIN', 'PROJECT_MANAGER'),
+  validate(updateClientSchema),
+  clientController.update
+)
+router.delete('/:id', authorize('ADMIN', 'PROJECT_MANAGER'), clientController.remove)
 
 export default router

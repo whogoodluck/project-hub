@@ -203,7 +203,7 @@ export default function SigninPage() {
                     Signing in...
                   </span>
                 ) : (
-                  'Sign In →'
+                  'Sign In'
                 )}
               </Button>
             </form>

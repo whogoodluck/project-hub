@@ -29,7 +29,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { formatDistanceToNow } from 'date-fns'
 import {
   Activity,
-  ChevronDown,
   Clock,
   Loader2,
   MoreHorizontal,
@@ -128,8 +127,7 @@ function TaskCard({
                   onValueChange={(v) => updateStatus.mutate(v)}
                 >
                   <SelectTrigger className='h-6 w-auto text-xs px-2 gap-1 border-0 bg-transparent hover:bg-muted p-0'>
-                    <StatusBadge status={task.status} />
-                    <ChevronDown className='h-3 w-3 text-muted-foreground ml-0.5' />
+                    <SelectValue placeholder={task.status} />
                   </SelectTrigger>
                   <SelectContent>
                     {STATUS_OPTIONS.filter((s) => s !== 'OVERDUE').map((s) => (

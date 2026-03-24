@@ -183,7 +183,7 @@ export async function updateTaskStatus(
 
   const task = await prisma.task.update({
     where: { id: taskId },
-    data: { status: toStatus, isOverdue: false },
+    data: { status: toStatus, ...(toStatus === TaskStatus.DONE ? { isOverdue: false } : {}) },
     include: TASK_INCLUDE,
   })
 
