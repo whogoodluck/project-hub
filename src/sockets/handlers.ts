@@ -1,3 +1,4 @@
+import { parse } from 'cookie'
 import type { Socket, Server as SocketIoServer } from 'socket.io'
 import prisma from '../lib/prisma'
 import { getMissedLogs } from '../services/activity.service'
@@ -12,9 +13,14 @@ interface AuthSocket extends Socket {
 
 export function registerSocketHandlers(io: SocketIoServer) {
   io.use((socket, next) => {
-    const token =
-      socket.handshake.auth?.token ||
-      socket.handshake.headers?.authorization?.replace('Bearer ', '')
+    const rawCookie = socket.handshake.headers.cookie
+
+    if (!rawCookie) {
+      return next(new Error('UNAUTHORIZED'))
+    }
+
+    const cookies = parse(rawCookie)
+    const token = cookies['access_token']
 
     if (!token) return next(new Error('UNAUTHORIZED'))
 
@@ -42,6 +48,7 @@ export function registerSocketHandlers(io: SocketIoServer) {
     })
 
     const onlineCount = await prisma.presenceSession.count()
+    console.log('online count:', onlineCount)
     io.to('role:ADMIN').emit('presence:count', { count: onlineCount })
 
     s.join(`role:${userRole}`)
