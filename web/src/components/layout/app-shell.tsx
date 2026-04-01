@@ -11,6 +11,8 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  Moon,
+  Sun,
   Users,
   X,
 } from 'lucide-react'
@@ -18,6 +20,7 @@ import { useState } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { NotificationDropdown } from '../notifications/notification-dropdown'
+import { useTheme } from '../theme-provider'
 import { Avatar, AvatarFallback } from '../ui/avatar'
 import { Button } from '../ui/button'
 import {
@@ -167,15 +170,15 @@ export function AppShell() {
     refetchInterval: 60_000,
   })
 
+  const { theme, setTheme } = useTheme()
+
   return (
     <div className='flex h-screen bg-background overflow-hidden'>
       <aside className='hidden lg:flex w-60 border-r border-border flex-col shrink-0'>
         <SidebarContent />
       </aside>
 
-      {/* Main area */}
       <div className='flex flex-1 flex-col min-w-0'>
-        {/* Top bar */}
         <header className='flex h-14 items-center gap-3 border-b border-border px-4 shrink-0'>
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
@@ -195,12 +198,22 @@ export function AppShell() {
             <span className='font-mono text-sm font-bold'>Project Hub</span>
           </div>
 
-          <div className='ml-auto flex items-center gap-2'>
+          <div className='ml-auto flex items-center gap-2 md:gap-4'>
+            <Button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              variant='ghost'
+              size='icon'
+            >
+              {theme === 'dark' ? (
+                <Sun className='h-4 w-4' />
+              ) : (
+                <Moon className='h-4 w-4' />
+              )}
+            </Button>
             <NotificationDropdown unreadCount={unreadCount} />
           </div>
         </header>
 
-        {/* Page content */}
         <main className='flex-1 overflow-y-auto'>
           <Outlet />
         </main>

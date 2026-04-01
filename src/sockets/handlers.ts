@@ -48,7 +48,6 @@ export function registerSocketHandlers(io: SocketIoServer) {
     })
 
     const onlineCount = await prisma.presenceSession.count()
-    console.log('online count:', onlineCount)
     io.to('role:ADMIN').emit('presence:count', { count: onlineCount })
 
     s.join(`role:${userRole}`)

@@ -1,6 +1,7 @@
+import { useTheme } from '@/components/theme-provider'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/contexts/auth.context'
-import { Activity, Layers, Lock, Zap } from 'lucide-react'
+import { Activity, Layers, Lock, Moon, Sun, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const FEATURES = [
@@ -23,6 +24,7 @@ const FEATURES = [
 
 export default function HomePage() {
   const { isAuthenticated } = useAuth()
+  const { theme, setTheme } = useTheme()
 
   return (
     <div className='relative min-h-screen overflow-hidden bg-background'>
@@ -49,6 +51,17 @@ export default function HomePage() {
         </div>
 
         <div className='flex items-center gap-3'>
+          <Button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            variant='ghost'
+            size='icon'
+          >
+            {theme === 'dark' ? (
+              <Sun className='h-4 w-4' />
+            ) : (
+              <Moon className='h-4 w-4' />
+            )}
+          </Button>
           {isAuthenticated ? (
             <Button
               asChild
